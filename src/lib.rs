@@ -22,3 +22,7 @@
 
 #![deny(missing_docs)]
 #![forbid(unsafe_code)]
+
+mod error;
+
+pub use error::{Error, Kind as ErrorKind, Result};
