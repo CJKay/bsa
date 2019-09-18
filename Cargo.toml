@@ -1,0 +1,22 @@
+[package]
+name = "bsa"
+version = "0.1.0"
+description = "A library for manipulating Bethesda Softworks Archive (`.bsa`, `.ba2`) files"
+authors = ["Chris Kay <chris@cjkay.com>"]
+
+keywords = ["archive", "bethesda", "softworks", "bsa", "ba2"]
+categories = ["compression", "encoding", "game-engines", "parser-implementations"]
+
+edition = "2018"
+repository = "https://github.com/CJKay/bsa"
+
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+
+[badges]
+codecov = { repository = "CJKay/bsa" }
+is-it-maintained-issue-resolution = { repository = "CJKay/bsa" }
+is-it-maintained-open-issues = { repository = "CJKay/bsa" }
+maintenance = { status = "actively-developed" }

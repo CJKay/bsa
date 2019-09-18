@@ -1,0 +1,74 @@
+name: Continuous integration
+
+on:
+  push:
+  pull_request:
+  schedule:
+      - cron: 0 0 * * *
+
+jobs:
+  clippy:
+    name: Linting
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: rustup component add clippy
+      - run: cargo clippy --all-targets --all-features -- -D warnings
+
+  codecov:
+    name: Code coverage
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: cargo install cargo-tarpaulin
+      - run: cargo tarpaulin --all --all-features --out Xml
+      - uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: cobertura.xml
+
+  fuzzit:
+    name: Fuzzing
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: rustup default nightly
+      - run: cargo install cargo-fuzz
+      - run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            FUZZIT_TYPE=local-regression
+          else
+            FUZZIT_TYPE=fuzzing
+          fi
+
+          wget https://github.com/fuzzitdev/fuzzit/releases/latest/download/fuzzit_Linux_x86_64 -O ./fuzzit
+          chmod a+x ./fuzzit
+
+          for FUZZIT_TARGET in $(cargo fuzz list); do
+            cargo fuzz run ${FUZZIT_TARGET} -- -runs=0
+
+            FUZZIT_API_KEY=${{ secrets.FUZZIT_TOKEN }} ./fuzzit create job --type ${FUZZIT_TYPE} ${FUZZIT_TARGET} ./fuzz/target/x86_64-unknown-linux-gnu/debug/${FUZZIT_TARGET}
+          done
+
+  readme:
+    name: ReadMe validation
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: cargo install cargo-readme
+      - run: cargo readme -o README.md
+      - run: git diff --exit-code
+
+  rustfmt:
+    name: Code style validation
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: cargo fmt -- --check
+
+  test:
+    name: Testing
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: cargo test --no-fail-fast

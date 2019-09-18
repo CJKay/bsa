@@ -1,0 +1,16 @@
+[package]
+name = "bsa-fuzz"
+version = "0.1.0"
+authors = ["Chris Kay <chris@cjkay.com>"]
+publish = false
+
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies.bsa]
+path = ".."
+
+[dependencies.libfuzzer-sys]
+git = "https://github.com/rust-fuzz/libfuzzer-sys.git"
