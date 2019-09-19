@@ -41,6 +41,12 @@ where
     }
 }
 
+impl<E> From<nom::Err<E>> for Kind {
+    fn from(_: nom::Err<E>) -> Self {
+        Self::Parser
+    }
+}
+
 /// A list specifying general categories of errors, used by the [`Error`] type.
 ///
 /// This list is intended to grow over time and it is not recommended to exhaustively match against
@@ -49,6 +55,22 @@ where
 /// [`Error`]: ./struct.Error.html
 #[derive(Debug, Display, Fail, From)]
 pub enum Kind {
+    /// Standard I/O error.
+    ///
+    /// Errors of this kind originate from within [`std::io`]. They encompass any I/O error that
+    /// might be thrown by the standard I/O library.
+    ///
+    /// [`std::io`]: https://doc.rust-lang.org/std/io
+    Io(#[cause] std::io::Error),
+
+    /// Parser error.
+    ///
+    /// Errors of this kind originate from [`nom`]. They indicate an error during the parsing
+    /// process, usually caused by an invalid archive file.
+    ///
+    /// [`nom`]: https://docs.rs/nom
+    Parser,
+
     #[doc(hidden)]
     __Nonexhaustive,
 }

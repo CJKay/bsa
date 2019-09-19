@@ -14,3 +14,7 @@ path = ".."
 
 [dependencies.libfuzzer-sys]
 git = "https://github.com/rust-fuzz/libfuzzer-sys.git"
+
+[[bin]]
+name = "parse-archive"
+path = "fuzz_targets/parse_archive.rs"

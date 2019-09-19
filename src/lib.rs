@@ -23,6 +23,9 @@
 #![deny(missing_docs)]
 #![forbid(unsafe_code)]
 
+mod archive;
 mod error;
+mod parser;
 
+pub use archive::Archive;
 pub use error::{Error, Kind as ErrorKind, Result};

@@ -16,6 +16,11 @@ readme = "README.md"
 [dependencies]
 derive_more = "0.15"
 failure = "0.1"
+nom = "5.0"
+
+[dev-dependencies]
+quickcheck = "0.9"
+quickcheck_macros = "0.8"
 
 [badges]
 codecov = { repository = "CJKay/bsa" }
