@@ -7,13 +7,13 @@ use crate::{Archive, Result};
 use nom::bytes::complete::tag;
 use std::io::Read;
 
-/// Magic number used by uncompressed Bethesda archives.
+/// Magic number used by `.bsa` archives.
 const BSA_MAGIC: &[u8; 4] = b"BSA\0";
 
-/// Parse the magic number field.
+/// Parse the magic number field of a `.bsa` file.
 ///
-/// The magic number field is what identifies a file as a Bethesda archive. In valid uncompressed
-/// archives (`.bsa` files), the magic number is always a `BSA\0`.
+/// The magic number field is what identifies a file as a Bethesda archive. In valid `.bsa`
+/// archives, the magic number is always `BSA\0`.
 fn magic<'input, Error>(input: &'input [u8]) -> nom::IResult<&'input [u8], &'input [u8], Error>
 where
     Error: nom::error::ParseError<&'input [u8]>,
