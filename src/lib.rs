@@ -27,5 +27,5 @@ mod archive;
 mod error;
 mod parser;
 
-pub use archive::Archive;
+pub use archive::{Archive, Type as ArchiveType};
 pub use error::{Error, Kind as ErrorKind, Result};
