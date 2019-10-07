@@ -17,6 +17,20 @@
 //! of it, such as the [Creation Engine][creation-engine-wiki], uses this archive file format to
 //! package assets.
 //!
+//! # Compatibility
+//!
+//! This library aims to support archives used in the following games:
+//!
+//! * The Elder Scrolls III: Morrowind
+//! * The Elder Scrolls IV: Oblivion
+//! * The Elder Scrolls V: Skyrim
+//! * The Elder Scrolls V: Skyrim Special Edition
+//! * The Elder Scrolls V: Skyrim Virtual Reality
+//! * Fallout 3
+//! * Fallout 4
+//!
+//! This library does not aim to be forwards-compatible.
+//!
 //! [creation-engine-wiki]: https://en.wikipedia.org/wiki/Creation_Engine
 //! [gamebryo-wiki]: https://en.wikipedia.org/wiki/Gamebryo
 
@@ -27,5 +41,5 @@ mod archive;
 mod error;
 mod parser;
 
-pub use archive::{Archive, Type as ArchiveType};
+pub use archive::{Archive, Version as ArchiveVersion};
 pub use error::{Error, Kind as ErrorKind, Result};
