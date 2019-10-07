@@ -70,6 +70,7 @@ mod tests {
         parse_magic(&MAGIC_FALLOUT4);
     }
 
+    #[allow(clippy::needless_pass_by_value)]
     #[quickcheck]
     fn quickcheck_parse_magic(input: Vec<u8>) {
         parse_magic(&input);

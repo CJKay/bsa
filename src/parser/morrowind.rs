@@ -29,15 +29,11 @@ mod tests {
     fn parse_magic(input: &[u8]) {
         let result = magic::<_, ()>(input);
 
-        match result {
-            Ok((_, magic)) => {
-                assert_eq!(input, MAGIC_MORROWIND);
-                assert_eq!(magic, MAGIC_MORROWIND);
-            }
-
-            Err(_) => {
-                assert_ne!(input, MAGIC_MORROWIND);
-            }
+        if let Ok((_, magic)) = result {
+            assert_eq!(input, MAGIC_MORROWIND);
+            assert_eq!(magic, MAGIC_MORROWIND);
+        } else {
+            assert_ne!(input, MAGIC_MORROWIND);
         }
     }
 
@@ -46,6 +42,7 @@ mod tests {
         parse_magic(&MAGIC_MORROWIND);
     }
 
+    #[allow(clippy::needless_pass_by_value)]
     #[quickcheck]
     fn quickcheck_parse_magic(input: Vec<u8>) {
         parse_magic(&input);

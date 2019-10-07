@@ -56,11 +56,11 @@ impl quickcheck::Arbitrary for Version {
         use rand::Rng;
 
         let values = &[
-            Version::Morrowind,
-            Version::Oblivion,
-            Version::Fallout3,
-            Version::SkyrimSe,
-            Version::Fallout4,
+            Self::Morrowind,
+            Self::Oblivion,
+            Self::Fallout3,
+            Self::SkyrimSe,
+            Self::Fallout4,
         ];
 
         values[gen.gen_range(0, values.len())]
