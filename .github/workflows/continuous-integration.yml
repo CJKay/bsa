@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: rustup component add clippy
-      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - run: cargo clippy --all-targets --all-features
 
   codecov:
     name: Code coverage
@@ -71,4 +71,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
+      - if: github.event_name == 'schedule'
+        env:
+          RUSTFLAGS: --cap-lints warn
+        run: 'true'
       - run: cargo test --no-fail-fast
