@@ -100,11 +100,7 @@ mod tests {
                 assert_eq!(input, VERSION_SKYRIMSE);
             }
 
-            Ok((_, _)) => {
-                unreachable!();
-            }
-
-            Err(_) => {
+            _ => {
                 assert_ne!(input, VERSION_OBLIVION);
                 assert_ne!(input, VERSION_FALLOUT3);
                 assert_ne!(input, VERSION_SKYRIMSE);

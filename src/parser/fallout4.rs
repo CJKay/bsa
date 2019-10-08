@@ -83,18 +83,10 @@ mod tests {
 
         let result = version::<()>(&buffer);
 
-        match result {
-            Ok((_, ArchiveVersion::Fallout4)) => {
-                assert_eq!(input, VERSION_FALLOUT4);
-            }
-
-            Ok((_, _)) => {
-                unreachable!();
-            }
-
-            Err(_) => {
-                assert_ne!(input, VERSION_FALLOUT4);
-            }
+        if let Ok((_, ArchiveVersion::Fallout4)) = result {
+            assert_eq!(input, VERSION_FALLOUT4);
+        } else {
+            assert_ne!(input, VERSION_FALLOUT4);
         }
     }
 
