@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: cargo install cargo-tarpaulin
-      - run: cargo tarpaulin --all --all-features --out Xml
+      - run: cargo tarpaulin --all --all-features --out Xml -- --test-threads=1
       - uses: codecov/codecov-action@v1.0.2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
