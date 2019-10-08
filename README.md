@@ -45,6 +45,7 @@ This library aims to support archives used in the following games:
 * The Elder Scrolls V: Skyrim Virtual Reality
 * Fallout 3
 * Fallout 4
+* Fallout 4 VR
 
 This library does not aim to be forwards-compatible.
 

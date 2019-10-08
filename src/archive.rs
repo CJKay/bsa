@@ -46,7 +46,7 @@ pub enum Version {
     /// **BSA** archive used by **TES V: Skyrim SE** and **TES V: Skyrim VR**.
     SkyrimSe,
 
-    /// **BA2** archive used by **Fallout 4**.
+    /// **BA2** archive used by **Fallout 4** and **Fallout 4 VR**.
     Fallout4,
 }
 
@@ -82,7 +82,7 @@ pub enum Archive {
     /// **BSA** archive used by **TES V: Skyrim SE** and **TES V: Skyrim VR**.
     SkyrimSe,
 
-    /// **BA2** archive used by **Fallout 4**.
+    /// **BA2** archive used by **Fallout 4** and **Fallout 4 VR**.
     Fallout4,
 }
 
