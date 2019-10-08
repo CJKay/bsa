@@ -50,23 +50,6 @@ pub enum Version {
     Fallout4,
 }
 
-#[cfg(test)]
-impl quickcheck::Arbitrary for Version {
-    fn arbitrary<Gen: quickcheck::Gen>(gen: &mut Gen) -> Self {
-        use rand::Rng;
-
-        let values = &[
-            Self::Morrowind,
-            Self::Oblivion,
-            Self::Fallout3,
-            Self::SkyrimSe,
-            Self::Fallout4,
-        ];
-
-        values[gen.gen_range(0, values.len())]
-    }
-}
-
 /// A Bethesda Softworks archive.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum Archive {
